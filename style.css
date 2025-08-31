@@ -1,0 +1,137 @@
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: rgb(90, 90, 90);
+}
+
+table {
+  align-items: center;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+button {
+  border: none;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  border-radius: 5px;
+}
+
+#open-dialog {
+  margin: 30px;
+  background-color: rgb(164, 217, 231);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+#open-dialog svg {
+  width: 20px;
+  fill: white;
+}
+
+#title {
+  width: 300px;
+  text-wrap: wrap;
+}
+
+#author {
+  width: 200px;
+  text-wrap: wrap;
+}
+
+th {
+  background-color: rgb(231, 171, 200);
+  color: white;
+  height: 1.8rem;
+}
+td {
+  border-bottom: 1px solid rgb(233, 217, 243);
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 5px 10px;
+}
+tr:nth-child(even) {
+  background-color: rgb(247, 247, 247);
+}
+.remove-btn {
+  background-color: transparent;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: pink;
+}
+
+.read-btn {
+  width: 4rem;
+  padding: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.561);
+  box-shadow: 1px 1px 1px rgba(220, 220, 220, 0.92);
+  cursor: pointer;
+}
+
+.read-btn.read {
+  color: rgb(235, 151, 203);
+}
+
+.read-btn:not(.read) {
+  color: rgb(114, 114, 114);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  width: 300px;
+}
+
+dialog {
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  border: none;
+  padding: 1.5rem 1rem;
+}
+
+#close-btn {
+  position: absolute;
+  top: 5px;
+  right: 8px;
+  background: transparent;
+  font-size: 1.5rem;
+  cursor: pointer;
+  line-height: 1;
+}
+form {
+  color: rgb(90, 90, 90);
+}
+form label:not(label:first-child) {
+  margin-top: 0.5rem;
+}
+
+form input {
+  height: 1.2rem;
+  border: 1px solid darkgray;
+  border-radius: 2px;
+  color: rgb(90, 90, 90);
+  padding: 0.3rem 0.5rem;
+  font-size: 1rem;
+}
+label[for="form-isRead"] {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+#form-isRead {
+  transform: scale(1.2);
+}
+
+#add-btn {
+  padding: 0.6rem 0.8rem;
+  background-color: rgb(164, 217, 231);
+  color: white;
+  font-weight: bold;
+  align-self: center;
+  margin-top: 15px;
+  cursor: pointer;
+  font-size: 1.2rem;
+}

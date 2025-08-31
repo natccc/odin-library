@@ -4,13 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Library</title>
+    <title>Library App</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
 
 <body>
     <h1>My Library</h1>
+
+
     <table>
         <thead>
             <tr>
@@ -18,30 +20,35 @@
                 <th>Author</th>
                 <th>Pages</th>
                 <th>Status</th>
+                <th></th>
             </tr>
         </thead>
         <tbody></tbody>
     </table>
-
-    <button id="open">Add Book</button>
+    <button id="open-dialog"><svg xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 448 512"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+            <path
+                d="M256 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 160-160 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l160 0 0 160c0 17.7 14.3 32 32 32s32-14.3 32-32l0-160 160 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-160 0 0-160z" />
+        </svg></button>
 
     <dialog>
+        <button id="close-btn">&times;</button>
         <form action="/">
-            <label for="title">Title: </label>
-            <input type="text" name="title" id="title" required>
 
-            <label for="author">Author: </label>
-            <input type="text" name="author" id="author" required>
+            <label for="form-title">Title*</label>
+            <input type="text" name="title" id="form-title" required>
+
+            <label for="form-author">Author*</label>
+            <input type="text" name="author" id="form-author" required>
 
 
-            <label for="pages">Pages: </label>
-            <input type="number" name="pages" id="pages" required>
+            <label for="form-pages">Pages*</label>
+            <input type="number" name="pages" id="form-pages" required>
 
-            <label for="read">Read</label>
-            <input type="checkbox" name="read" id="read">
+            <label for="form-isRead">Read
+            <input type="checkbox" name="isRead" id="form-isRead"></label>
 
-            <button id="add" type="submit">Add Book</button>
-            <button id="close">Close</button>
+            <button id="add-btn" type="submit">Add Book</button>
 
 
         </form>

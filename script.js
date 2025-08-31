@@ -1,30 +1,38 @@
 let myLibrary = [
+  { id: 1, title: "Dune", author: "Frank Herbert", pages: 412, isRead: true },
+  { id: 2, title: "1984", author: "George Orwell", pages: 328, isRead: false },
   {
-    author: "J.K. Rowling",
-    title: "Harry Potter",
-    pages: 1000,
-    read: false,
-    id: 1,
+    id: 3,
+    title: "To Kill a Mockingbird",
+    author: "Harper Lee",
+    pages: 281,
+    isRead: true,
   },
-
   {
-    author: "Marijn Haverbeke",
-    title: "Eloquent JavaScript",
-    pages: 2300,
-    read: true,
-    id: 2,
+    id: 4,
+    title: "The Hobbit",
+    author: "J.R.R. Tolkien",
+    pages: 310,
+    isRead: false,
+  },
+  {
+    id: 5,
+    title: "Pride and Prejudice",
+    author: "Jane Austen",
+    pages: 279,
+    isRead: true,
   },
 ];
-function Book(author, title, pages, read) {
+function Book(author, title, pages, isRead) {
   this.author = author;
   this.title = title;
   this.pages = pages;
-  this.read = read;
+  this.isRead = isRead;
   this.id = crypto.randomUUID();
 }
 
-function addBookToLibrary(author, title, pages, read) {
-  const newBook = new Book(author, title, pages, read);
+function addBookToLibrary(author, title, pages, isRead) {
+  const newBook = new Book(author, title, pages, isRead);
   myLibrary.push(newBook);
 }
 
@@ -34,11 +42,13 @@ function render() {
   tbody.innerHTML = "";
   for (const book of myLibrary) {
     let html = `<tr class='item' data-id=${book.id}>
-    <td>${book.title}</td>
-    <td>${book.author}</td>
+    <td id="title">${book.title}</td>
+    <td id="author">${book.author}</td>
         <td>${book.pages}</td>
-    <td><button class='read-btn'>${book.read ? "Read" : "Unread"}</button></td>
-    <td><button class='remove'>Remove</button>
+    <td><button class="read-btn ${book.isRead ? "read" : ""}">${
+      book.isRead ? "Read" : "Unread"
+    }</button></td>
+    <td><button class='remove-btn'>&times;</button>
     </tr>`;
 
     tbody.innerHTML += html;
@@ -47,8 +57,8 @@ function render() {
 render();
 
 const dialog = document.querySelector("dialog");
-const openButton = document.querySelector("#open");
-const closeButton = document.querySelector("#close");
+const openButton = document.querySelector("#open-dialog");
+const closeButton = document.querySelector("#close-btn");
 const form = document.querySelector("form");
 
 openButton.addEventListener("click", () => {
@@ -63,16 +73,16 @@ dialog.addEventListener("submit", (e) => {
   e.preventDefault();
   const data = Object.fromEntries(new FormData(form).entries());
 
-  data.read = form.querySelector('[name="read"]').checked;
+  data.isRead = form.querySelector('[name="isRead"]').checked;
 
-  addBookToLibrary(data.author, data.title, data.pages, data.read);
+  addBookToLibrary(data.author, data.title, data.pages, data.isRead);
   form.reset();
   dialog.close();
   render();
 });
 
 tbody.addEventListener("click", (e) => {
-  if (e.target.classList.contains("remove")) {
+  if (e.target.classList.contains("remove-btn")) {
     const row = e.target.closest("tr");
     const id = Number(row.dataset.id);
     row.remove();
@@ -82,13 +92,14 @@ tbody.addEventListener("click", (e) => {
 
 tbody.addEventListener("click", (e) => {
   if (e.target.classList.contains("read-btn")) {
-    console.log(e.target.textContent);
-    e.target.textContent = e.target.textContent === "Read" ? "Unread" : "Read";
+    e.target.classList.toggle("read");
+    e.target.textContent = e.target.classList.contains("read")
+      ? "Read"
+      : "Unread";
     const row = e.target.closest("tr");
     const id = Number(row.dataset.id);
     const book = myLibrary.find((book) => book.id === id);
 
-    book.read = !book.read;
-    console.log(book);
+    book.isRead = e.target.classList.contains("read");
   }
 });
